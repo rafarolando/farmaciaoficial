@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Medicamentos
+{% endblock %}
+{% block menu %}
+{% include 'medicamentos/_menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="30px">#</th>
+                <th class="text-center">Nombre</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for medicamento in medicamentos %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ medicamento.nombre }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

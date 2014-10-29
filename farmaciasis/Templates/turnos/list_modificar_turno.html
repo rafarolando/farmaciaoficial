@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Turnos
+{% endblock %}
+{% block menu %}
+{% include 'turnos/_menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="30px">#</th>
+                <th class="text-center">Turno</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for turno in turnos %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ turno.fecha }}</td>
+                        <td class="text-right">
+                            <a href="{% url 'farmacia.views.update_turno' turno.id %}" class="btn btn-warning">Modificar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

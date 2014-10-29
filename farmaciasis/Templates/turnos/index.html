@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Mis Turnos
+{% endblock %}
+{% block menu %}
+{% include 'turnos/_menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="list-group">
+            <a href="#" class="list-group-item active">Mis Turnos</a>
+            {% for turno in turnos %}
+                <p class="list-group-item">
+                    {{ turno.fecha|date:"d - M - Y" }}
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

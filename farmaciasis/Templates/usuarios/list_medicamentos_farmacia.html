@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Medicamentos
+{% endblock %}
+{% block menu %}
+{% include 'usuarios/_menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="list-group">
+            <a href="#" class="list-group-item active">Mis Medicamentos</a>
+            {% for medicamento in medicamentos %}
+                <p class="list-group-item">
+                {{ medicamento.nombre}}
+                {{ medicamento.proveedor}}
+                {% for compuesto in medicamentos.compuesto.all %}
+                    {{ compuesto.nombre }}
+                {% endfor %}
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

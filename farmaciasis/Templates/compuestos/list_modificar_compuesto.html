@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Compuestos
+{% endblock %}
+{% block menu %}
+{% include 'compuestos/_menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="30px">#</th>
+                <th class="text-center">Nombre</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for compuesto in compuestos %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ compuesto.nombre }}</td>
+                        <td class="text-right">
+                            <a href="{% url 'medicamentos.views.update_compuesto' compuesto.id %}" class="btn btn-warning">Modificar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<!--link rel="stylesheet" href="{{STATIC_URL}}bootstrap/css/bootstrap.min.css"-->
+	<!--link rel="stylesheet" href="{{STATIC_URL}}bootstrap/css/bootstrap-theme.min.css"-->
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="{{STATIC_URL}}bootstrap/css/bootswatch.min.css">
+	
+	<script src="{{STATIC_URL}}js/jquery.js"></script>
+    <script src="{{STATIC_URL}}js/jquery.timers.js"></script>
+    <script src="{{STATIC_URL}}js/jquery.autoScroller.js"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style.css">
+	<title>{% block titulo %}
+		Farmacia
+	{% endblock titulo %}</title>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          {% if user.is_authenticated  %}
+                <a class="navbar-brand"  href="{% url 'usuarios.views.perfil' %}" id="download">{{ user.username|upper }} | Farmacia </a>
+                {% else %}
+                <a class="navbar-brand"  href="/" id="download"> Farmacias </a>
+                {% endif %}
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Farmacias <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="download">
+                <li>
+                <a href="{% url 'farmacia.views.list_medicamentos_farmacias' %}">Ver medicamentos</a>
+                </li>
+                <li>
+                <a href="{% url 'farmacia.views.index_tipo' %}">Tipos</a>
+                </li>
+                <li>
+                <a href="{% url 'farmacia.views.mis_turnos' %}">Turnos</a>
+                </li>
+              </ul>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Medicamentos <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="download">
+                <li>
+                <a href="{% url 'medicamentos.views.index_medicamento' %}">Medicamentos</a>
+                </li>
+                <li>
+                <a href="{% url 'medicamentos.views.index_proveedor' %}">Proveedores</a>
+                </li>
+                <li>
+                <a href="{% url 'medicamentos.views.index_unidad' %}">Unidades de Medida</a>
+                </li>
+                <li>
+                <a href="{% url 'medicamentos.views.index_compuesto' %}">Compuestos</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <form class="navbar-form navbar-left" action="" method="get">{% csrf_token %}
+                <input type="text" name="q" class="form-control col-lg-8" placeholder="Buscar" >
+            </form>
+            <li>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'usuarios.views.salir' %}">Cerrar Sesión</a>
+                {% else %}
+                    <a href={% url 'usuarios.views.logget_in' %} >Iniciar Sesión</a>
+                {% endif %}
+                </li>
+            <li>
+            	<a href="{% url 'usuarios.views.new_user' %}">Registrate</a>
+        	</li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+<div class="container padding70">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-3">
+					{% block menu %}
+                        <div class="autoScroller-container" style="height:600px; background:#ffffff; overflow:auto; box-shadow: 5px 5px 50px 0">
+                            <div id="vmarquee">
+                            <h3>Title 1</h3>
+                            <p>Etiam diam eros, fermentum sed pulvinar vitae, blandit id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut condimentum fermentum metus, nec bibendum arcu tristique vel. </p>
+                            <h3>Title 2</h3>
+                            <p>Sed volutpat fringilla nulla nec faucibus. Integer id dignissim justo. Pellentesque sodales tortor ac est pretium malesuada. Donec mi lacus, vulputate laoreet luctus a, bibendum sed nisi.</p>
+                            <h3>Title 3</h3>
+                            <p>Aliquam erat volutpat. Aenean mattis volutpat feugiat. Nam ut tempus nisl. Praesent dictum tellus eget neque vehicula condimentum? </p>
+                            <h3>Title 4</h3>
+                            <p>Nullam et tellus nec nunc laoreet eleifend. Morbi consequat leo sed eros placerat aliquet. Donec sit amet nulla neque.</p>
+                            <h3>Title 5</h3>
+                            <p>Nam tempus scelerisque nibh eget placerat. Nunc vel felis vitae odio dictum placerat. Donec adipiscing leo sit amet leo ultrices molestie. Mauris eget velit eu ipsum adipiscing consectetur eget eu erat. Integer imperdiet enim sed mi molestie malesuada.</p>
+                            <h3>Title 6</h3>
+                            <p>In at felis aliquet tellus aliquet tempus eget a mauris. Etiam nunc est, elementum a accumsan ac, sodales ultrices erat? Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                            <h3>Title 7</h3>
+                            <p>Nulla orci enim, ullamcorper sit amet porttitor in, sagittis nec metus. Suspendisse potenti.</p>
+                            </div>
+                        </div>
+					{% endblock menu %}
+				</div>
+				<div class="col-md-9">
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if  message.tags == "error"%}
+                                <div class="alert alert-dismissable alert-danger">
+                            {% else %}
+                                <div class="alert alert-dismissable alert-{{ message.tags }}">
+                            {% endif %}
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <p>{{ message|safe }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+					{% block cuerpo %}
+						<div class="row">
+                            <div class="col-md-12">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7518.259255705922!2d-65.75842069262946!3d-19.578946410585257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sbo!4v1409799680407" width="800" height="600" frameborder="0" style="border:0"></iframe>
+                            </div>
+						</div>
+					{% endblock cuerpo %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+          <div class="col-md-12 text-center">
+            &copy; Por <a class="fg-color-black " href="mailto:rafa_rolando@hotmail.com">Rafael R. Tapia B.</a>
+          </div>
+        </div>
+
+</div>
+
+
+<script src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(window).load(function(){autoScroller('vmarquee')});
+</script>
+
+</body>
+</html>

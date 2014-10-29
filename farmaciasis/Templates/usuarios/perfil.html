@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block titulo %}
+Perfi de Usuario
+{% endblock %}
+{% block cuerpo %}
+    <h2>Bienvenido {{ user.username }}</h2>
+{% endblock %}
+
+{% block menu %}
+    {% include 'usuarios/_menu.html' %}
+{% endblock %}

@@ -1,0 +1,22 @@
+.bd-black{
+	border: solid black 1px;
+}
+.padding70{
+	padding-top: 40px;
+}
+.errorlist{
+	background: red;
+	color: white;
+	padding: 10px;
+}
+.bg-indianred{
+    background: indianred;
+}
+.bg-indianred a{
+    color:black !important;
+
+}
+
+.fc-orange{
+    color:orange !important;
+}

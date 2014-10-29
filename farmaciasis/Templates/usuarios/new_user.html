@@ -1,0 +1,37 @@
+{% extends 'form.html'%}
+{% block titulo %}
+Nuevo Usuario
+{% endblock %}
+{% block legend %}
+Registro Usuario
+{% endblock %}
+{% block cuerpoform %}
+{% for campo in formulario %}
+    {{campo.errors}}
+        <div class="form-group">
+            {{campo.label_tag}}
+            <div class="col-lg-9">
+                {{campo}}
+                {% if campo.help_text %}
+                    <div class="fc-orange">
+                        <span class="glyphicon glyphicon-edit"> </span>{{campo.help_text}}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+{% endfor %}
+{% for campo in formulariofar %}
+    {{campo.errors}}
+        <div class="form-group">
+            {{campo.label_tag}}
+            <div class="col-lg-9">
+                {{campo}}
+                {% if campo.help_text %}
+                    <div class="fc-orange">
+                        <span class="glyphicon glyphicon-edit"> </span>{{campo.help_text}}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+{% endfor %}
+{% endblock %}

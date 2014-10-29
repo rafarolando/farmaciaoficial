@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+	Registro Usuario
+{% endblock titulo %}
+
+{% block cuerpo %}
+	<form action="" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">{% csrf_token %}
+        <fieldset>
+            <legend>{% block legend %}
+            
+            {% endblock %}</legend>
+            {% block cuerpoform%}
+		    {% for campo in formulario %}
+			    {{campo.errors}}
+			        <div class="form-group">
+				        {{campo.label_tag}}
+				        <div class="col-lg-9">
+					        {{campo}}
+					        {% if campo.help_text %}
+						        <div class="fc-orange">
+							        <span class="glyphicon glyphicon-warning-sign"> </span>    {{campo.help_text}}
+						        </div>
+					        {% endif %}
+				        </div>
+			        </div>
+            {% endfor %}
+        {% endblock %}
+        <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+         <button type="submit" class="btn btn-primary">{% block submit %}
+		Guardar{% endblock %}</button>
+		<a href="{% block cancelar %}/{% endblock %}" class="btn btn-danger">Cancelar</a>
+      </div>
+    </div>
+
+        </fieldset>
+
+	</form>
+	<script type="text/javascript">
+		$(document).ready(function(event) {
+			$('label').addClass('col-lg-3 control-label');
+			$('input').addClass('form-control');
+		});
+	</script>
+{% endblock cuerpo %}
